@@ -1,0 +1,70 @@
+routes:
+  - name: to-kadaster
+    id: 1
+    uri: /kadaster
+    upstream_id: upstream-kadaster
+    status: 1
+
+upstreams:
+  - id: upstream-kadaster
+    scheme: https
+    pass_host: pass
+    nodes:
+      "kadaster:443": 1
+    tls:
+      verify: false
+      client_cert: |
+        -----BEGIN CERTIFICATE-----
+        MIID/TCCAeWgAwIBAgIULZdzVsqSAh4hc+jZ9c5FSfYBWgkwDQYJKoZIhvcNAQEL
+        BQAwFDESMBAGA1UEAwwJTXlMb2NhbENBMB4XDTI2MDgyMDEzMzQxNFoXDTI3MDgy
+        MDEzMzQxNFowGTEXMBUGA1UEAwwObXktdGVzdC1jbGllbnQwggEiMA0GCSqGSIb3
+        DQEBAQUAA4IBDwAwggEKAoIBAQDHPUel23GjafRYTicc+6A+xlwZHmrHqvWvjjue
+        c/FG/Dn6PwVd2eQHRAcQyjXR2r/2cSiKfxxHBu3TPjP/qBc5r8OOUwth6y0BImRC
+        wBmuIKuG4XLHmahnOAEUAgm89QgBDrjJPkyec7STOYW/jLtANZzmY7ToP0UEqLaK
+        5vJpRY6DcGv2by8NGMLxomt8hfZiCFjSJSxzI04/w7LClkbUjHr2V+T/i1MtGumP
+        /geuQDeVA6fRu5Jb6CITe9P6d++I+dr3TrpQeYdTCaKihpikJLqMhqT1KBvr3w4e
+        0X4a2iub88HpS2k4370ajImqR3CvwoUXgtnbhYq3L8qAvtu3AgMBAAGjQjBAMB0G
+        A1UdDgQWBBRPiSeflag7ngcYgYiwtkrNQCzlgTAfBgNVHSMEGDAWgBSAK/a2a8Jl
+        zpvEO1fpcR4Uuzv0CDANBgkqhkiG9w0BAQsFAAOCAgEATw8FhymsXcXbKrwJknCi
+        DxqY3WGDMzl/OVWyBUeR/KkWWM/Gkn5b+V5a7gtPbuea95c51TrhBocNFFahtrWu
+        ExLbxh4YRCh9n/+hFqYgnbJ6E0gNtL38mG0qu/cMwLtgjHm9t9GtM+E4mioxkVAT
+        qWz5/nGYY9utq3MqeKCeCZ8vADqHl+DRq6F70fn2f8AZeOxC1OZ/9GI16Gar4RmO
+        wTpNhqS7iS9GAziGvXVEbzjzoKoPgZbs0FvNaVmH0VHkuxokxktulxNEeNvJ50bv
+        4B5uPaDoU2gTI1C/ki6pjcTsl0tvIskluuX4yGyVQNGmTfpdrwFRqZWfbEmt/C2j
+        VvN+NEelZdjiIVoKS2lo86FLXKZ1dzsnS5HY4Hbp4GJI7SHvoDNSN9VHl5iTbV+R
+        4HjIonpm2A+iFTeN/M1Ave3I3k4p3oRWUswo8G2C7cWuXtpqPl9r+2ryEwlqiY8M
+        5MwAxh2lKHVNm/wpUsYnqJ8R/ly6MSKjNWGTDs5zahe79uYZa1rOg8xhFUemUpe/
+        g8HuZ+uzBz8Qk1+gNmX2nvmySuEEXbs4L+nnCL46TUpwNoIWFLDiWDCTt+5/CQTF
+        K1wUytHlonVH3DgQKElgtxQLlg0LkvFCzktsHbeBapO3k9CAPPr15jHldoXD7DqQ
+        0YPj7JEOA5NvaHSDpil3MsY=
+        -----END CERTIFICATE-----
+      client_key: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDHPUel23GjafRY
+        Ticc+6A+xlwZHmrHqvWvjjuec/FG/Dn6PwVd2eQHRAcQyjXR2r/2cSiKfxxHBu3T
+        PjP/qBc5r8OOUwth6y0BImRCwBmuIKuG4XLHmahnOAEUAgm89QgBDrjJPkyec7ST
+        OYW/jLtANZzmY7ToP0UEqLaK5vJpRY6DcGv2by8NGMLxomt8hfZiCFjSJSxzI04/
+        w7LClkbUjHr2V+T/i1MtGumP/geuQDeVA6fRu5Jb6CITe9P6d++I+dr3TrpQeYdT
+        CaKihpikJLqMhqT1KBvr3w4e0X4a2iub88HpS2k4370ajImqR3CvwoUXgtnbhYq3
+        L8qAvtu3AgMBAAECggEAGwzjso3chrfGyssdk1lJyeFriqYvEC8oDoRB7ZhHPKst
+        AfVWzgWxvcIg2sjheBL6N27ooVkdpo+3Gr7vbLlOd0YOR79YTxyQw9PUB0ixPotv
+        +QRDQvyb48ZeRcWluye3b6anNFIcMUfQpKEi2r1e2kUNKYMwV3c+RczUL9VS5IjQ
+        EFZZuGb1MKdm5YHGux+gNnO6QSF3e4Ktr65PoZLMtmjKn3oTG8g+rulXwRC37ygs
+        gq7G1cpQQnWEXMtDTTeRO36t/BptL3DZguDXvJSV7mbAkrEY10gIm6sFycm9dUci
+        ZhZKpsI1lSatBYlJWjFehE6b1980zSVlinc8ETmBOQKBgQDzQ1gVDL9tAMDFYWpz
+        auxLEI9yI36VquojFQ4vSqVBoSLJODHacsmRMsKsK8hhJSTLDmoz6foYUFSVzydq
+        TjuTPp2h0749OteOeSQoNzddAR6GIt9q4njcaWvQTKbt9qNYQcLOUvh3wnv8d7mi
+        KMVWKrPinQvBpqfIh4rzy/sgvwKBgQDRq9mUHureyYtV9JdPNt9bftsDl3R0/IPN
+        /bTWieWITfMCDKeA8Shcb4JdjinQ6Ml0hzvUzKneYFyJuxy5QkaZg3MHlkgsgpyU
+        MaIUJl/X1dByX24IqsC0qNO1EC+tXhbZ4IDdpxKgE/YU9TcbhQ4Y9MzhANMYNy5x
+        CpQwW52LCQKBgDygIvqUA70Zu/E1Fv+OvTbz+Jv8hpasUs/NdoyIsOjLTM0TKTGE
+        /AEowmWAP98eD65feE5Z2I9orbvsNamDt8s5hrWG/Nlrqb8DJ+Sx5iVSmxXY6Q9N
+        Q8vCpjDyeYPCvPDI6tDa0rueB6JjACuOt6eC2vP2KbDoZNZQGWwrAPonAoGBAInz
+        JlllKiTgt/Ma1T7CHJzHTvQC/xVFWrb6GLQa0FEo8BzGFKMqh+KhX0WMloij0IAB
+        xeTRr2XnQps/57sgFvFD4jf4sY3PdZOvQDM/uEl6nQXTMcM0DUwP1BLKDoRjZmd9
+        ZWvwU7nMyFirqdFKbqcO0YmskDbbf4vSaQOUE4h5AoGAX0Hv4NpjxPuDiPSBEBXc
+        Qm7zynHFhbA+noeICMHQ5bh9jlaj/5PRzSZk243HJc3YtC901ImTRUBwKax2cckc
+        Q9KsRfhQ9JusSOeTuBTMcny0f7CebMBd79A8ZWmsmvQVe8EFUVEaLNW/cZA1wYlU
+        enEZuCVRpG+s2KSTb0w9nJ0=
+        -----END PRIVATE KEY-----
+#END
