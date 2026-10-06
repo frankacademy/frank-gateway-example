@@ -6,3 +6,4 @@ services:
       - 8443:443
     volumes:
       - ./kadaster/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./kadaster/certs:/etc/nginx/certs:ro
