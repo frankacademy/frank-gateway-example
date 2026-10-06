@@ -1,13 +1,16 @@
 services:
   gate:
     image: apache/apisix
+    entrypoint: ["/bin/sh", "/render-apisix.sh"]
     ports:
       - 80:9080
     networks:
       apisix:
     volumes:
       - ./gate/config.yaml:/usr/local/apisix/conf/config.yaml
-      - ./gate/apisix.yaml:/usr/local/apisix/conf/apisix.yaml
+      - ./gate/apisix.template.yaml:/templates/apisix.yaml:ro
+      - ./gate/render-apisix.sh:/render-apisix.sh:ro
+      - ./gate/certs:/certs:ro
     environment:
       - APISIX_STAND_ALONE=true
   kadaster:

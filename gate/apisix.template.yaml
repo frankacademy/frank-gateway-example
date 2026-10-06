@@ -1,0 +1,20 @@
+routes:
+  - name: to-kadaster
+    id: 1
+    uri: /kadaster
+    upstream_id: upstream-kadaster
+    status: 1
+
+upstreams:
+  - id: upstream-kadaster
+    scheme: https
+    pass_host: pass
+    nodes:
+      "kadaster:443": 1
+    tls:
+      verify: false
+      client_cert: |
+        @@file:/certs/client.crt@@
+      client_key: |
+        @@file:/certs/client.key@@
+#END
