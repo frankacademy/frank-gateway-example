@@ -6,7 +6,7 @@ In Git Bash, first run `export MSYS_NO_PATHCONV=1`. Otherwise Git Bash turns
 # CA
 
 ```
-openssl req -x509 -newkey rsa:2048 -nodes -keyout ca/ca.key -out ca/ca.crt -days 365 -subj "/CN=MyLocalCA"
+openssl req -x509 -newkey rsa:2048 -nodes -keyout common/ca.key -out common/ca.crt -days 365 -subj "/CN=MyLocalCA"
 ```
 
 # Server: key + signing request, then sign it with the CA
@@ -29,7 +29,7 @@ Then create the key and signing request, and sign it:
 
 ```
 openssl req -newkey rsa:2048 -nodes -keyout kadaster/certs/server.key -out server.csr -subj "/CN=kadaster"
-openssl x509 -req -in server.csr -CA ca/ca.crt -CAkey ca/ca.key -CAcreateserial \
+openssl x509 -req -in server.csr -CA common/ca.crt -CAkey common/ca.key -CAcreateserial \
   -out kadaster/certs/server.crt -days 365 -extfile server.ext
 ```
 
@@ -44,18 +44,18 @@ extendedKeyUsage=clientAuth
 
 ```
 openssl req -newkey rsa:2048 -nodes -keyout gate/certs/client.key -out client.csr -subj "/CN=my-test-client"
-openssl x509 -req -in client.csr -CA ca/ca.crt -CAkey ca/ca.key -CAcreateserial \
+openssl x509 -req -in client.csr -CA common/ca.crt -CAkey common/ca.key -CAcreateserial \
   -out gate/certs/client.crt -days 365 -extfile client.ext
 ```
 
 # Clean up and check
 
-The `.csr` and `.ext` files and `ca/ca.srl` are only needed while signing:
+The `.csr` and `.ext` files and `common/ca.srl` are only needed while signing:
 
 ```
-rm server.csr server.ext client.csr client.ext ca/ca.srl
-openssl verify -CAfile ca/ca.crt -verify_hostname kadaster kadaster/certs/server.crt
-openssl verify -CAfile ca/ca.crt gate/certs/client.crt
+rm server.csr server.ext client.csr client.ext common/ca.srl
+openssl verify -CAfile common/ca.crt -verify_hostname kadaster kadaster/certs/server.crt
+openssl verify -CAfile common/ca.crt gate/certs/client.crt
 ```
 
 To see the extensions in a finished certificate:
