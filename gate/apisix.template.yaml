@@ -8,11 +8,14 @@ routes:
 upstreams:
   - id: upstream-kadaster
     scheme: https
-    pass_host: pass
+    pass_host: node
     nodes:
       "kadaster:443": 1
     tls:
-      verify: false
+      verify: true
+      ca_certs:
+        - |
+          @@file:/ca/ca.crt@@
       client_cert: |
         @@file:/certs/client.crt@@
       client_key: |

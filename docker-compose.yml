@@ -11,6 +11,7 @@ services:
       - ./gate/apisix.template.yaml:/templates/apisix.yaml:ro
       - ./gate/render-apisix.sh:/render-apisix.sh:ro
       - ./gate/certs:/certs:ro
+      - ./ca/ca.crt:/ca/ca.crt:ro
     environment:
       - APISIX_STAND_ALONE=true
   kadaster:
@@ -23,6 +24,7 @@ services:
     volumes:
       - ./kadaster/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./kadaster/certs:/etc/nginx/certs:ro
+      - ./ca/ca.crt:/etc/nginx/ca/ca.crt:ro
 networks:
   apisix:
     driver: bridge
