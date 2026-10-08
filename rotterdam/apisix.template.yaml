@@ -1,0 +1,26 @@
+routes:
+  - name: to-rotterdam-impl
+    id: 1
+    uri: /*
+    upstream_id: upstream-rotterdam-impl
+    status: 1
+
+upstreams:
+  - id: upstream-rotterdam-impl
+    scheme: http
+    nodes:
+      "rotterdam-impl:80": 1
+
+ssls:
+  - id: 1
+    snis:
+      - rotterdam
+    cert: |
+      @@file:/certs/serverclient.crt@@
+    key: |
+      @@file:/certs/serverclient.key@@
+    client:
+      ca: |
+        @@file:/ca/ca.crt@@
+      depth: 2
+#END

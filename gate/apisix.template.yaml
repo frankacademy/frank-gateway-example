@@ -4,6 +4,11 @@ routes:
     uri: /kadaster
     upstream_id: upstream-kadaster
     status: 1
+  - name: to-rotterdam
+    id: 2
+    uri: /rotterdam
+    upstream_id: upstream-rotterdam
+    status: 1
 
 upstreams:
   - id: upstream-kadaster
@@ -11,6 +16,20 @@ upstreams:
     pass_host: node
     nodes:
       "kadaster:443": 1
+    tls:
+      verify: true
+      ca_certs:
+        - |
+          @@file:/ca/ca.crt@@
+      client_cert: |
+        @@file:/certs/client.crt@@
+      client_key: |
+        @@file:/certs/client.key@@
+  - id: upstream-rotterdam
+    scheme: https
+    pass_host: node
+    nodes:
+      "rotterdam:9443": 1
     tls:
       verify: true
       ca_certs:
