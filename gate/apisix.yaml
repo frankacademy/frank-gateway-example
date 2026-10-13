@@ -19,9 +19,9 @@ upstreams:
     tls:
       verify: true
       ca_certs:
-        - "$ENV://CA_CRT"
-      client_cert: "$ENV://CLIENT_CRT"
-      client_key: "$ENV://CLIENT_KEY"
+        - "${{CA_CRT}}"
+      client_cert: "${{CLIENT_CRT}}"
+      client_key: "${{CLIENT_KEY}}"
   - id: upstream-rotterdam
     scheme: https
     pass_host: node
@@ -30,7 +30,7 @@ upstreams:
     tls:
       verify: true
       ca_certs:
-        - "$ENV://CA_CRT"
-      client_cert: "$ENV://CLIENT_CRT"
-      client_key: "$ENV://CLIENT_KEY"
+        - "${{CA_CRT}}"
+      client_cert: "${{CLIENT_CRT}}"
+      client_key: "${{CLIENT_KEY}}"
 #END

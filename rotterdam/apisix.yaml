@@ -15,9 +15,9 @@ ssls:
   - id: 1
     snis:
       - rotterdam
-    cert: "$ENV://SERVER_CRT"
-    key: "$ENV://SERVER_KEY"
+    cert: "${{SERVER_CRT}}"
+    key: "${{SERVER_KEY}}"
     client:
-      ca: "$ENV://CA_CRT"
+      ca: "${{CA_CRT}}"
       depth: 2
 #END
