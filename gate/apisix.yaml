@@ -19,12 +19,9 @@ upstreams:
     tls:
       verify: true
       ca_certs:
-        - |
-          @@file:/ca/ca.crt@@
-      client_cert: |
-        @@file:/certs/client.crt@@
-      client_key: |
-        @@file:/certs/client.key@@
+        - "${{CA_CRT}}"
+      client_cert: "${{CLIENT_CRT}}"
+      client_key: "${{CLIENT_KEY}}"
   - id: upstream-rotterdam
     scheme: https
     pass_host: node
@@ -33,10 +30,7 @@ upstreams:
     tls:
       verify: true
       ca_certs:
-        - |
-          @@file:/ca/ca.crt@@
-      client_cert: |
-        @@file:/certs/client.crt@@
-      client_key: |
-        @@file:/certs/client.key@@
+        - "${{CA_CRT}}"
+      client_cert: "${{CLIENT_CRT}}"
+      client_key: "${{CLIENT_KEY}}"
 #END

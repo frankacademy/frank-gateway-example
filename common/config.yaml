@@ -2,3 +2,12 @@ deployment:
   role: data_plane
   role_data_plane:
     config_provider: yaml
+# Environment variables used in apisix.yaml. Nginx workers only see the
+# variables listed here.
+nginx_config:
+  envs:
+    - CA_CRT
+    - CLIENT_CRT
+    - CLIENT_KEY
+    - SERVER_CRT
+    - SERVER_KEY

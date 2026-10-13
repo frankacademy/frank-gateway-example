@@ -15,12 +15,9 @@ ssls:
   - id: 1
     snis:
       - rotterdam
-    cert: |
-      @@file:/certs/serverclient.crt@@
-    key: |
-      @@file:/certs/serverclient.key@@
+    cert: "${{SERVER_CRT}}"
+    key: "${{SERVER_KEY}}"
     client:
-      ca: |
-        @@file:/ca/ca.crt@@
+      ca: "${{CA_CRT}}"
       depth: 2
 #END

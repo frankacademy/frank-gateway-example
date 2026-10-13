@@ -1,22 +1,29 @@
 services:
   gate:
-    image: frank-api-gateway
-    entrypoint: ["/bin/sh", "/render-apisix.sh"]
+    image: ghcr.io/wearefrank/frank-gateway:1.1.0
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
+    command: ["/docker-entrypoint.sh", "docker-start"]
     ports:
       - 80:9080
     networks:
       apisix:
     volumes:
       - ./common/config.yaml:/usr/local/apisix/conf/config.yaml
-      - ./gate/apisix.template.yaml:/templates/apisix.yaml:ro
-      - ./common/render-apisix.sh:/render-apisix.sh:ro
-      - ./gate/certs:/certs:ro
-      - ./common/ca.crt:/ca/ca.crt:ro
+      - ./gate/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
+      - ./common/entrypoint.sh:/entrypoint.sh:ro
+    secrets:
+      - source: ca-crt
+        target: CA_CRT
+      - source: gate-client-crt
+        target: CLIENT_CRT
+      - source: gate-client-key
+        target: CLIENT_KEY
     environment:
       - APISIX_STAND_ALONE=true
   rotterdam:
-    image: frank-api-gateway
-    entrypoint: ["/bin/sh", "/render-apisix.sh"]
+    image: ghcr.io/wearefrank/frank-gateway:1.1.0
+    entrypoint: ["/bin/sh", "/entrypoint.sh"]
+    command: ["/docker-entrypoint.sh", "docker-start"]
     ports:
       - 7080:9080
       - 7443:9443
@@ -24,10 +31,15 @@ services:
       apisix:
     volumes:
       - ./common/config.yaml:/usr/local/apisix/conf/config.yaml
-      - ./rotterdam/apisix.template.yaml:/templates/apisix.yaml:ro
-      - ./common/render-apisix.sh:/render-apisix.sh:ro
-      - ./rotterdam/certs:/certs:ro
-      - ./common/ca.crt:/ca/ca.crt:ro
+      - ./rotterdam/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
+      - ./common/entrypoint.sh:/entrypoint.sh:ro
+    secrets:
+      - source: ca-crt
+        target: CA_CRT
+      - source: rotterdam-server-crt
+        target: SERVER_CRT
+      - source: rotterdam-server-key
+        target: SERVER_KEY
     environment:
       - APISIX_STAND_ALONE=true
   rotterdam-impl:
@@ -50,3 +62,14 @@ services:
 networks:
   apisix:
     driver: bridge
+secrets:
+  ca-crt:
+    file: ./common/ca.crt
+  gate-client-crt:
+    file: ./gate/certs/client.crt
+  gate-client-key:
+    file: ./gate/certs/client.key
+  rotterdam-server-crt:
+    file: ./rotterdam/certs/serverclient.crt
+  rotterdam-server-key:
+    file: ./rotterdam/certs/serverclient.key
