@@ -12,12 +12,9 @@ services:
       - ./gate/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
       - ./common/entrypoint.sh:/entrypoint.sh:ro
     secrets:
-      - source: ca-crt
-        target: CA_CRT
-      - source: gate-client-crt
-        target: CLIENT_CRT
-      - source: gate-client-key
-        target: CLIENT_KEY
+      - CA_CRT
+      - CLIENT_CRT
+      - CLIENT_KEY
     environment:
       - APISIX_STAND_ALONE=true
   rotterdam:
@@ -34,12 +31,9 @@ services:
       - ./rotterdam/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
       - ./common/entrypoint.sh:/entrypoint.sh:ro
     secrets:
-      - source: ca-crt
-        target: CA_CRT
-      - source: rotterdam-server-crt
-        target: SERVER_CRT
-      - source: rotterdam-server-key
-        target: SERVER_KEY
+      - CA_CRT
+      - SERVER_CRT
+      - SERVER_KEY
     environment:
       - APISIX_STAND_ALONE=true
   rotterdam-impl:
@@ -63,13 +57,13 @@ networks:
   apisix:
     driver: bridge
 secrets:
-  ca-crt:
+  CA_CRT:
     file: ./common/ca.crt
-  gate-client-crt:
+  CLIENT_CRT:
     file: ./gate/certs/client.crt
-  gate-client-key:
+  CLIENT_KEY:
     file: ./gate/certs/client.key
-  rotterdam-server-crt:
+  SERVER_CRT:
     file: ./rotterdam/certs/serverclient.crt
-  rotterdam-server-key:
+  SERVER_KEY:
     file: ./rotterdam/certs/serverclient.key
