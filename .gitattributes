@@ -2,6 +2,10 @@
 # checkout
 * text=auto eol=lf
 
+# Windows batch files need crlf. With lf, cmd can fail to find labels used by
+# goto and call. They are still stored with lf in the repository.
+*.bat text eol=crlf
+
 # Documentation:
 
 # Checkin:
