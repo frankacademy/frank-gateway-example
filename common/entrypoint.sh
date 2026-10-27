@@ -7,4 +7,4 @@ for file in /run/secrets/*; do
     export "$name=$(cat "$file")"
 done
 
-exec "$@"
+exec /docker-entrypoint.sh docker-start
