@@ -45,12 +45,12 @@ networks:
     driver: bridge
 secrets:
   CA_CRT:
-    file: ./common/ca.crt
+    file: ${CA_CRT_FILE:-./common/ca.crt}
   CLIENT_CRT:
-    file: ./gate/certs/client.crt
+    file: ${CLIENT_CRT_FILE:-./gate/certs/client.crt}
   CLIENT_KEY:
-    file: ./gate/certs/client.key
+    file: ${CLIENT_KEY_FILE:-./gate/certs/client.key}
   SERVER_CRT:
-    file: ./rotterdam/certs/server.crt
+    file: ${SERVER_CRT_FILE:-./rotterdam/certs/server.crt}
   SERVER_KEY:
-    file: ./rotterdam/certs/server.key
+    file: ${SERVER_KEY_FILE:-./rotterdam/certs/server.key}

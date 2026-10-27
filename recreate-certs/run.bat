@@ -53,7 +53,7 @@ openssl verify -CAfile common/ca.crt bad/bad.crt >nul 2>&1 && (
 echo bad\bad.crt: not trusted by ca, as intended
 
 rmdir /s /q "%WORK%"
-echo Done. Restart with: docker compose up --build --force-recreate
+echo Done. Restart with: docker compose up -d --force-recreate
 exit /b 0
 
 :fail
