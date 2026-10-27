@@ -1,6 +1,21 @@
+secrets:
+  CA_CRT:
+    file: ${CA_CRT_FILE:-./common/ca.crt}
+  CLIENT_CRT:
+    file: ${CLIENT_CRT_FILE:-./gate/certs/client.crt}
+  CLIENT_KEY:
+    file: ${CLIENT_KEY_FILE:-./gate/certs/client.key}
+  SERVER_CRT:
+    file: ${SERVER_CRT_FILE:-./rotterdam/certs/server.crt}
+  SERVER_KEY:
+    file: ${SERVER_KEY_FILE:-./rotterdam/certs/server.key}
 services:
   gate:
     image: ghcr.io/wearefrank/frank-gateway:1.1.4
+    secrets:
+      - CA_CRT
+      - CLIENT_CRT
+      - CLIENT_KEY
     entrypoint: 
       - /bin/sh
       - /entrypoint.sh
@@ -12,12 +27,12 @@ services:
       - ./common/config.yaml:/usr/local/apisix/conf/config.yaml
       - ./gate/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
       - ./common/entrypoint.sh:/entrypoint.sh:ro
-    secrets:
-      - CA_CRT
-      - CLIENT_CRT
-      - CLIENT_KEY
   rotterdam:
     image: ghcr.io/wearefrank/frank-gateway:1.1.4
+    secrets:
+      - CA_CRT
+      - SERVER_CRT
+      - SERVER_KEY
     entrypoint: 
       - /bin/sh
       - /entrypoint.sh
@@ -30,10 +45,6 @@ services:
       - ./common/config.yaml:/usr/local/apisix/conf/config.yaml
       - ./rotterdam/apisix.yaml:/usr/local/apisix/conf/apisix.yaml:ro
       - ./common/entrypoint.sh:/entrypoint.sh:ro
-    secrets:
-      - CA_CRT
-      - SERVER_CRT
-      - SERVER_KEY
   rotterdam-impl:
     image: nginx:alpine
     networks:
@@ -43,14 +54,3 @@ services:
 networks:
   apisix:
     driver: bridge
-secrets:
-  CA_CRT:
-    file: ${CA_CRT_FILE:-./common/ca.crt}
-  CLIENT_CRT:
-    file: ${CLIENT_CRT_FILE:-./gate/certs/client.crt}
-  CLIENT_KEY:
-    file: ${CLIENT_KEY_FILE:-./gate/certs/client.key}
-  SERVER_CRT:
-    file: ${SERVER_CRT_FILE:-./rotterdam/certs/server.crt}
-  SERVER_KEY:
-    file: ${SERVER_KEY_FILE:-./rotterdam/certs/server.key}
